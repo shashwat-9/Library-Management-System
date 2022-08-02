@@ -1,11 +1,9 @@
-package com.shashwat.LibraryManagementSystem.models;
+package com.shashwat.LibraryManagementSystem.models.Books;
 
 import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Author {

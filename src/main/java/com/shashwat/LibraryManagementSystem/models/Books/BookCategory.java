@@ -1,4 +1,4 @@
-package com.shashwat.LibraryManagementSystem.models;
+package com.shashwat.LibraryManagementSystem.models.Books;
 
 import com.sun.istack.NotNull;
 
