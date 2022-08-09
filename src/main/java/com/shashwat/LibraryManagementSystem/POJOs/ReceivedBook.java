@@ -1,14 +1,14 @@
-package com.shashwat.LibraryManagementSystem.DAO;
+package com.shashwat.LibraryManagementSystem.POJOs;
 
 import java.util.List;
 
 public class ReceivedBook {
-    String title;
-    int availableCopies;
-    int totalCopies;
-    String edition;
-    int bookCategoryId;
-    List<Integer> authorList;
+    private String title;
+    private int availableCopies;
+    private int totalCopies;
+    private String edition;
+    private int bookCategoryId;
+    private List<Integer> authorList;
 
     public ReceivedBook() {
     }

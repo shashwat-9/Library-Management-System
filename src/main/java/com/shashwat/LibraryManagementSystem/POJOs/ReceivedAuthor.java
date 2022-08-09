@@ -1,12 +1,9 @@
-package com.shashwat.LibraryManagementSystem.DAO;
-
-import com.shashwat.LibraryManagementSystem.models.Books.BookCategory;
+package com.shashwat.LibraryManagementSystem.POJOs;
 
 public class ReceivedAuthor {
 
     private String title;
     private int bookCategory;
-
 
     public String getTitle() {
         return title;

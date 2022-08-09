@@ -10,7 +10,6 @@ public class BookCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @NotNull
     private String title;
 

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class PendingLibrarian {
+public class PendingUser {
 
     @Id
     private String phoneNo;

@@ -10,23 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Shashwat Mishra
+ * @version 1.0
+ * */
 //@EnableSwagger2
 @SpringBootApplication
 public class LibraryManagementSystemApplication implements CommandLineRunner {
 
-	@Autowired
 	private BookRepository bookRepository;
-
-	@Autowired
 	private BookCategoryRepository bookCategoryRepository;
-
-	@Autowired
 	private AuthorRepository authorRepository;
 
 	public static void main(String[] args) {
@@ -92,4 +92,20 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
 		bookRepository.saveAll(bookList);
 
 	}
+
+	@Autowired
+	public void setBookRepository(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+
+	@Autowired
+	public void setBookCategoryRepository(BookCategoryRepository bookCategoryRepository) {
+		this.bookCategoryRepository = bookCategoryRepository;
+	}
+
+	@Autowired
+	public void setAuthorRepository(AuthorRepository authorRepository) {
+		this.authorRepository = authorRepository;
+	}
+
 }

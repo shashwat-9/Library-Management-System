@@ -1,9 +1,9 @@
-package com.shashwat.LibraryManagementSystem.DAO;
+package com.shashwat.LibraryManagementSystem.POJOs;
 
 public class SearchRequest {
 
-    /*1 for author
-      2 for books
+    /*1 for books
+      2 for author
       3 for bookCategory
     * */
     private int searchChoice;

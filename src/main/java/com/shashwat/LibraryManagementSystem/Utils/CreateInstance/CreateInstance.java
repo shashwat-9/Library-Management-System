@@ -3,7 +3,7 @@ package com.shashwat.LibraryManagementSystem.Utils.CreateInstance;
 import com.shashwat.LibraryManagementSystem.POJOs.CreateUserRequest;
 import com.shashwat.LibraryManagementSystem.models.Users.User;
 
-public class Create {
+public class CreateInstance {
 
     public static User createUser(CreateUserRequest createUserRequest) {
         String username = createUserRequest.getUsername();
@@ -16,11 +16,10 @@ public class Create {
         if (role == 1) {
             authorities = "User";
         }   else if (role == 2) {
-            authorities = "Librarian";
-        }   else if (role == 3) {
-            authorities = "Head";
+            authorities = "Librarian:user";
         }
 
         return new User(phoneNo, username, password, authorities);
     }
+
 }
