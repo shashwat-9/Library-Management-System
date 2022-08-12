@@ -9,4 +9,11 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     List<Author> findAuthorByName(String title);
 
+    Author findById(int id);
+
+    @Override
+    List<Author> findAll();
+
+    //    Boolean existsById(int id);
+
 }
