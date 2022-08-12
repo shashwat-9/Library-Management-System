@@ -26,6 +26,14 @@ public class Author {
         this.bookCategory = bookCategory;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @NotNull
     public String getName() {
         return name;
