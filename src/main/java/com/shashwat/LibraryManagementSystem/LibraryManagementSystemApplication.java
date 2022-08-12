@@ -1,16 +1,12 @@
 package com.shashwat.LibraryManagementSystem;
 
-import com.shashwat.LibraryManagementSystem.Repository.AuthorRepository;
-import com.shashwat.LibraryManagementSystem.Repository.BookCategoryRepository;
-import com.shashwat.LibraryManagementSystem.Repository.BookRepository;
+import com.shashwat.LibraryManagementSystem.Utils.Repo.RepoObj;
 import com.shashwat.LibraryManagementSystem.models.Books.Author;
 import com.shashwat.LibraryManagementSystem.models.Books.Book;
 import com.shashwat.LibraryManagementSystem.models.Books.BookCategory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,13 +17,9 @@ import java.util.Set;
  * @author Shashwat Mishra
  * @version 1.0
  * */
-//@EnableSwagger2
+
 @SpringBootApplication
 public class LibraryManagementSystemApplication implements CommandLineRunner {
-
-	private BookRepository bookRepository;
-	private BookCategoryRepository bookCategoryRepository;
-	private AuthorRepository authorRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryManagementSystemApplication.class, args);
@@ -35,6 +27,10 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+	}
+
+	/*@Override
+	public void run(String... args)  {
 		BookCategory bookCategory1 = new BookCategory("Physics");
 		BookCategory bookCategory2 = new BookCategory("Algorithms");
 		BookCategory bookCategory3 = new BookCategory("Economics");
@@ -46,7 +42,7 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
 		bookCategoryList.add(bookCategory3);
 		bookCategoryList.add(bookCategory4);
 
-		bookCategoryRepository.saveAll(bookCategoryList);
+		RepoObj.bookCategoryRepository.saveAll(bookCategoryList);
 
 		Author author1 = new Author("H C Verma", bookCategory1);
 		Author author2 = new Author("Thomas H Cormen", bookCategory2);
@@ -62,7 +58,7 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
 		authorList.add(author4);
 		authorList.add(author5);
 		authorList.add(author6);
-		authorRepository.saveAll(authorList);
+		RepoObj.authorRepository.saveAll(authorList);
 
 		Set<Author> l1 = new HashSet<>();
 		l1.add(author1);
@@ -89,23 +85,9 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
 		bookList.add(b4);
 		bookList.add(b5);
 
-		bookRepository.saveAll(bookList);
+		RepoObj.bookRepository.saveAll(bookList);
 
-	}
+	}*/
 
-	@Autowired
-	public void setBookRepository(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
-
-	@Autowired
-	public void setBookCategoryRepository(BookCategoryRepository bookCategoryRepository) {
-		this.bookCategoryRepository = bookCategoryRepository;
-	}
-
-	@Autowired
-	public void setAuthorRepository(AuthorRepository authorRepository) {
-		this.authorRepository = authorRepository;
-	}
 
 }

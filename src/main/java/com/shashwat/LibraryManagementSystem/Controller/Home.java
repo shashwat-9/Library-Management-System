@@ -1,15 +1,14 @@
 package com.shashwat.LibraryManagementSystem.Controller;
 
 import com.shashwat.LibraryManagementSystem.POJOs.CreateUserRequest;
-import com.shashwat.LibraryManagementSystem.Utils.CreateInstance.CreateInstance;
+import com.shashwat.LibraryManagementSystem.Utils.Create.CreateInstance;
 import com.shashwat.LibraryManagementSystem.Utils.Messages.Messages;
 import com.shashwat.LibraryManagementSystem.Utils.Repo.RepoObj;
-import com.shashwat.LibraryManagementSystem.Utils.Validators.Validator;
+import com.shashwat.LibraryManagementSystem.Service.Validators.BookValidator;
 import com.shashwat.LibraryManagementSystem.models.Admin.Notification;
 import com.shashwat.LibraryManagementSystem.models.Books.Author;
 import com.shashwat.LibraryManagementSystem.models.Books.Book;
 import com.shashwat.LibraryManagementSystem.models.Books.BookCategory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -23,12 +22,6 @@ import java.util.List;
 @RestController
 public class Home {
 
-    private final RepoObj repoObj;
-    @Autowired
-    public Home(RepoObj repoObj) {
-        this.repoObj = repoObj;
-    }
-
     /**
      * Basic welcome API
      * */
@@ -39,24 +32,25 @@ public class Home {
 
     /**
      * @param title - keyword to be searched
-     * @param choice - 1 for book title, 2 for author name, 3 for bookCategory
+     * @param choice - 1 for Book title, 2 for author name, 3 for bookCategory
      * */
+
     @GetMapping("/searchBooks")
     public List<Book> search(@RequestParam String title, @RequestParam int choice) {
         if (title == null)  return null;
         List<Book> response = new ArrayList<>();
         switch (choice) {
             case 1:
-                response = repoObj.bookRepository.findBookByTitle(title);
+                response = RepoObj.bookRepository.findBookByTitle(title);
                 break;
             case 2:
-                List<Author> author = repoObj.authorRepository.findAuthorByName(title);
+                List<Author> author = RepoObj.authorRepository.findAuthorByName(title);
                 for (Author a : author)
-                    response.addAll(repoObj.bookRepository.findBooksByAuthorsListContaining(a));
+                    response.addAll(RepoObj.bookRepository.findBooksByAuthorsListContaining(a));
                 break;
             case 3:
-                BookCategory bookCategory = repoObj.bookCategoryRepository.findByTitle(title);
-                response = repoObj.bookRepository.findBooksByBookCategory(bookCategory);
+                BookCategory bookCategory = RepoObj.bookCategoryRepository.findByTitle(title);
+                response = RepoObj.bookRepository.findBooksByBookCategory(bookCategory);
         }
         return response;
     }
@@ -70,14 +64,16 @@ public class Home {
     @GetMapping("/searchAllBooks")
     public Page<Book> searchAll(@RequestParam int size, @RequestParam int page) {
         if (size > 100) size = 100;
-        return repoObj.bookRepository.findAll(PageRequest.of(page, size));
+        return RepoObj.bookRepository.findAll(PageRequest.of(page, size));
     }
 
-    @GetMapping("/BookCategory")
+    @GetMapping("/allBookCategory")
     public List<BookCategory> getBookCategory() {
-        return repoObj.bookCategoryRepository.findAll();
+        return RepoObj.bookCategoryRepository.findAll();
     }
 
+    @GetMapping("/allAuthor")
+    public List<Author> getAuthor() {return RepoObj.authorRepository.findAll();}
 
     /**
      * Api used for fetching notifications sorted Date-Wise
@@ -85,25 +81,29 @@ public class Home {
     @GetMapping("/notifications")
     public Page<Notification>  getNotifications(@RequestParam int size,@RequestParam int page) {
         Sort sort = Sort.by("Date").descending();
-        return repoObj.notificationRepository.findAll(PageRequest.of(page, size, sort));
+        return RepoObj.notificationRepository.findAll(PageRequest.of(page, size, sort));
     }
 
     /**
-     * @param createUserRequest - An Object having details of the user.
+     * @param createUserRequest - An Object having details of the UserSignUp.
      * Click for more details
-     * This API first checks for the validity of the details of the user
-     * Upon successful verification,the instance of the user object is saved
+     * This API first checks for the validity of the details of the UserSignUp
+     * Upon successful verification,the instance of the UserSignUp object is saved
      * User is disabled by default when signup is successful, which can be approved by the head only
      */
+
     @PostMapping("/signUp")
     public ResponseEntity<String> signUp(@RequestBody CreateUserRequest createUserRequest) {
 
-        int isValid = Validator.userValidator(createUserRequest);
+        int isValid = BookValidator.userValidator(createUserRequest);
         if (isValid != 4) {
-            return new ResponseEntity<>(Messages.user[isValid], HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(Messages.UserSignUp[isValid], HttpStatus.NOT_ACCEPTABLE);
         }
-        repoObj.userRepository.save(CreateInstance.createUser(createUserRequest));
-
-        return new ResponseEntity<>(Messages.user[4], HttpStatus.CREATED);
+        try {
+            RepoObj.userRepository.save(CreateInstance.createUser(createUserRequest));
+        } catch (Exception e) {
+            return new ResponseEntity<>(Messages.UserSignUp[7], HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(Messages.UserSignUp[4], HttpStatus.CREATED);
     }
 }
