@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ReceivedBook {
     private String title;
-    private int availableCopies;
     private int totalCopies;
     private String edition;
     private int bookCategoryId;
@@ -19,14 +18,6 @@ public class ReceivedBook {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getAvailableCopies() {
-        return availableCopies;
-    }
-
-    public void setAvailableCopies(int availableCopies) {
-        this.availableCopies = availableCopies;
     }
 
     public int getTotalCopies() {
