@@ -1,17 +1,22 @@
 package com.shashwat.LibraryManagementSystem.models.Users;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
 
     @Id
     private String phoneNo;
+    @Column(unique = true)
     private String username;
 
     private String password;
@@ -37,6 +42,8 @@ public class User implements UserDetails {
         this.authorities = authorities;
     }
 
+
+
     public void setAccountNonExpired(boolean accountNonExpired) {
         isAccountNonExpired = accountNonExpired;
     }
@@ -49,13 +56,39 @@ public class User implements UserDetails {
         isCredentialsNonExpired = credentialsNonExpired;
     }
 
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
+    public String getPhoneNo() {
+        return phoneNo;
     }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public void setEnabled(boolean enabled) {this.isEnabled = enabled;}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> authorityList = new ArrayList<>();
+        String[] authorities = this.authorities.split(":");
+
+        for (String authority : authorities) {
+            GrantedAuthority obj = new SimpleGrantedAuthority(authority);
+            authorityList.add(obj);
+        }
+
+        return authorityList;
     }
 
     @Override
@@ -84,7 +117,5 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
-        return isEnabled;
-    }
+    public boolean isEnabled() {return isEnabled;}
 }
