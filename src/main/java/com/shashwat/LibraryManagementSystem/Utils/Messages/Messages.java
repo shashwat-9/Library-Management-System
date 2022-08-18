@@ -16,13 +16,13 @@ public class Messages {
     public static String[] Book = {
             "Book title can't be Null",
             "Total Copies can't -ve",
-            "New BookCategory Added",
+            "BookCategory doesn't exists",
             "Author doesn't exists",
             "Book Added Successfully"
     };
 
     public static String[] BookCategory = {
-            "Category with same title already exists",
+            "Null Values not allowed",
             "Category Already Exists",
             "Category added Successfully"
     };

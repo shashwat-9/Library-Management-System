@@ -1,23 +1,17 @@
 package com.shashwat.LibraryManagementSystem;
 
-import com.shashwat.LibraryManagementSystem.Utils.Repo.RepoObj;
-import com.shashwat.LibraryManagementSystem.models.Books.Author;
-import com.shashwat.LibraryManagementSystem.models.Books.Book;
-import com.shashwat.LibraryManagementSystem.models.Books.BookCategory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Shashwat Mishra
  * @version 1.0
  * */
 
+
+@EnableSwagger2
 @SpringBootApplication
 public class LibraryManagementSystemApplication implements CommandLineRunner {
 

@@ -75,8 +75,8 @@ public class BookValidator {
     }
 
     public static int authorValidator(ReceivedAuthor receivedAuthor) {
-        String title= receivedAuthor.getTitle();
-        int bookCategoryId =receivedAuthor.getBookCategory();
+        String title = receivedAuthor.getTitle();
+        int bookCategoryId = receivedAuthor.getBookCategory();
 
         if (title == null)
             return 0;

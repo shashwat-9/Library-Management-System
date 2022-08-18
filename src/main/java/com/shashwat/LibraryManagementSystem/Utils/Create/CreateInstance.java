@@ -8,9 +8,8 @@ import com.shashwat.LibraryManagementSystem.models.Books.Author;
 import com.shashwat.LibraryManagementSystem.models.Books.Book;
 import com.shashwat.LibraryManagementSystem.models.Books.BookCategory;
 import com.shashwat.LibraryManagementSystem.models.Users.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +23,11 @@ public class CreateInstance {
         String phoneNo = createUserRequest.getPhone_no();
         int role = createUserRequest.getRole();
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+
+        System.out.println(hashedPassword);
+
         String authorities = null;
 
         if (role == 1) {
@@ -32,7 +36,7 @@ public class CreateInstance {
             authorities = "Librarian:User";
         }
 
-        return new User(phoneNo, username, password, authorities);
+        return new User(phoneNo, username, hashedPassword, authorities);
     }
 
     public static Book createBook(ReceivedBook receivedBook) {

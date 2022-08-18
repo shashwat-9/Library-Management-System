@@ -9,6 +9,7 @@ public interface BookCategoryRepository extends JpaRepository<BookCategory, Stri
 
     BookCategory findByTitle(String title);
 
+//    BookCategory findByTitleLikeIgnoreCase(String title);
     Boolean existsByTitleIgnoreCase(String title);
 
     boolean existsById(int id);
