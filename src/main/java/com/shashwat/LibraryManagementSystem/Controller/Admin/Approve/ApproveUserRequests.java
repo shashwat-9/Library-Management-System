@@ -1,4 +1,4 @@
-package com.shashwat.LibraryManagementSystem.Controller.Admin.AdminUserController;
+package com.shashwat.LibraryManagementSystem.Controller.Admin.Approve;
 
 import com.shashwat.LibraryManagementSystem.Service.Validators.UserValidator;
 import com.shashwat.LibraryManagementSystem.Utils.Messages.Messages;
