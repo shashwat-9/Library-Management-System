@@ -16,6 +16,13 @@ public class RepoObj {
     public static NotificationRepository notificationRepository;
     public static UserRepository userRepository;
 
+    public static IssueRequestRepository issueRequestRepository;
+
+    @Autowired
+    public void setIssueRequestRepository(IssueRequestRepository requestRepository) {
+        RepoObj.issueRequestRepository = requestRepository;
+    }
+
     @Autowired
     public void setAuthorRepository(AuthorRepository authorRepository) {
         RepoObj.authorRepository = authorRepository;
