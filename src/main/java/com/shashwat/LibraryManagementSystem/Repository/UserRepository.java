@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     User findByPhoneNoAndAuthoritiesNotContaining(String phoneNo, String role);
 
+    User findByUsername(String username);
+
     @Query("select u from User u where u.isEnabled = :val")
     Page<User> findUserByEnabled(Pageable pageable, @Param("val") boolean val);
 
