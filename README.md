@@ -20,8 +20,12 @@ after running the project.
           B. Enabling/Disabling any user.
           
           C. Approving/Disapproving Issuance Requests.
+          
+          D. Submission of the issued book 
 
   3. User - User of the Library
+  
+  A user can have only two current requests.
 
 # Endpoints
 
