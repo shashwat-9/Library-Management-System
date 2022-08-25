@@ -1,14 +1,26 @@
 # Library-Management-System
 Spring boot Backend Application for Library Management System
 
+This project is swagger Enabled and thus the full documentation can be viewed by hitting http://localhost:8080/swagger-ui.html#/
+after running the project.
+
 # Three Roles in the system
 
   1. Head - Head of the Library
+     
+     Can disable/enable any Librarian and can perform the tasks of librarian as well.
+     
+     Can Issue Notice.
+     
   2. Librarian - Looks after maintaining of the Library.
      Functions: 
+          
           A. Adding Books, Bookcategories and Authors in the Database.
+          
           B. Enabling/Disabling any user.
-          C. Issue Notice.
+          
+          C. Approving/Disapproving Issuance Requests.
+
   3. User - User of the Library
 
 # Endpoints
@@ -151,3 +163,43 @@ Note : All Parameters are request Parameters if not specified
         "bookCategoryId" : <int>,
         "authorList" : List<Integer>
     }
+    
+  4. /admin/approveIssue
+  
+  Patch API
+  
+  Description: approve Issue Request
+  Parameter : id of the IssueRequest
+  
+  5. /admin/approveSubmission
+  
+  Patch API
+  
+  Description: approve Submission request of a book by a user.
+  Parameter : id of the Issue Request
+  
+  6. /admin/calculateFine
+  
+  Get API
+  
+  Description: Calculate current fine for a given issuance of book
+  Parameter : id of the Issue Request
+  
+  7. /admin/disApproveRequest
+  
+  Delete API
+  
+  Description: used to delete an issue request entry from the database.
+  Parameter : id of the issue request.
+  
+# User APIs
+
+  1. /user/issueBook
+  
+  Description : To add an issue Request
+  Parameter : id of the book to generate Request for.
+  
+  2. /user/issueDetails
+  
+  Description : To get the details of all the issue request made by a user.
+  No Paramater
