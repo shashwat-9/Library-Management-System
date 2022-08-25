@@ -27,6 +27,10 @@ public class Book {
     @ManyToMany
     private Set<Author> authorsList;
 
+    public int getId() {
+        return id;
+    }
+
     public Book() {
     }
 
